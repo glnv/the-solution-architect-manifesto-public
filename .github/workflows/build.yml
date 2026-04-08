@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'sam-manifesto.md'
+      - 'index.template.html'
+      - 'build.js'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install marked
+
+      - name: Run build
+        run: node build.js
+
+      - name: Commit built file
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --staged --quiet && exit 0
+          git stash
+          git pull --rebase origin main
+          git stash pop
+          git add index.html
+          git commit -m "build: bake manifesto content into index.html [skip ci]"
+          git push origin main 

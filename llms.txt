@@ -1,0 +1,47 @@
+# The Solution Architect Manifesto
+
+> A community-maintained field guide for solution architects in analytics, data and martech.
+
+## What this is
+
+The Solution Architect Manifesto is a set of practitioner beliefs deemed indispensable to being an effective solution architect. It covers how solution architects should approach client problems, technical decisions, documentation, pattern recognition, and intellectual honesty.
+
+It was initiated by Glenn Vanderlinden, co-founder at Human37, and is open to contributions from the community of solution architects.
+
+The full content is maintained at: https://github.com/glnv/solutionarchitectmanifesto-v2/blob/main/sam-manifesto.md
+
+## Principles
+
+1. Assume a client's briefing is incomplete. Never assume the presented problem is the actual problem to be solved. Never assume, always validate.
+
+2. Articulate the problem, then work it. The problem must be articulated precisely before it can be solved. Words make up our perception of reality — be precise. Deconstruct the problem into smaller pieces and solve them individually. There is no such thing as a single problem.
+
+3. Meetings are for working the problem. Every meeting is an opportunity to get closer to the solution. Progress should be booked after every meeting.
+
+4. Always be exploring, always be testing. Solution architects are not necessarily hired to know — they are hired to find out. Always have a sandbox. Never provide advice based on a non-validated hypothesis.
+
+5. Answers are not solutions. You can provide answers without solving the problem. Answers are a response to a question. Solutions are a response to a problem.
+
+6. Ticket immediately. When depending on resources outside of your control, ticket immediately. The longer you wait, the longer the delay to the solution.
+
+7. Look for patterns. Every solution is a combination of reusable patterns. Mastering the patterns upon which tools are built allows you to switch between tools. This approach prevents lock-in.
+
+8. Check, double-check, deploy and check again. Run sanity checks before deploying. Double-check. Verify once in production.
+
+9. Simplicity is the ultimate sophistication. Choose simplicity over complexity in both solution design and communication. Make it as complex as you need to, not as complex as you can.
+
+10. Document or perish. Solutions are not final until they are documented. The act of documenting is more important than the form it takes.
+
+11. Remember all measurements are proxies. All data is a representation of something else. Always question the proxy — what does this data really represent, is it still valid, and is it still useful?
+
+12. Accept that sometimes no solution exists yet. Recognise true impossibility early and communicate it transparently. Declaring no solution is not defeat — it is intellectual honesty.
+
+13. Show, don't tell. Use visual aids to explain solutions and problems. If appropriate, show what a solution could look like in the form of a demo or mock-up.
+
+## About
+
+- Website: https://solutionarchitectmanifesto.com
+- Source: https://github.com/glnv/solutionarchitectmanifesto-v2
+- Author: Glenn Vanderlinden (https://www.linkedin.com/in/glennvanderlinden/)
+- Organisation: Human37 (https://human37.com)
+- Related: The Great Consultant (https://thegreatconsultant.com)

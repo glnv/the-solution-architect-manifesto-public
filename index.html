@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Solution Architect Manifesto</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description"
+        content="A statement of beliefs deemed indispensable to be a successful solution architect in analytics, data and martech.">
+    <meta property="og:title" content="The Solution Architect Manifesto">
+    <meta property="og:description"
+        content="A statement of beliefs deemed indispensable to be a successful solution architect in analytics, data and martech.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solutionarchitectmanifesto.com">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Solution Architect Manifesto">
+    <meta name="twitter:description"
+        content="A statement of beliefs deemed indispensable to be a successful solution architect in analytics, data and martech.">
+    <!-- Anonymous Analytics -->
+    <script defer src="https://cloud.umami.is/script.js"
+        data-website-id="4221c7d1-a2ac-4956-a077-d84b4269384a"></script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f7f6f4;
+            --border: #e8e6e2;
+            --blue: #1A6BFF;
+            --blue-dim: #e0eaff;
+            --text-1: #111110;
+            --text-2: #777770;
+            --text-3: #b8b6b0;
+            --sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            --mono: 'Courier New', Courier, monospace;
+            --serif: Georgia, serif;
+            --max-w: 920px;
+            --pad-x: 48px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text-1);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a {
+            color: var(--blue);
+            text-decoration: none;
+            border-bottom: 1px solid var(--blue-dim);
+        }
+
+        a:hover {
+            border-bottom-color: var(--blue);
+        }
+
+        .nav {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 100;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            height: 56px;
+            padding: 0 var(--pad-x);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav__brand {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            border: none;
+        }
+
+        .nav__nums {
+            display: flex;
+            gap: 2px;
+        }
+
+        .nav__num {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--text-3);
+            border: 1px solid transparent;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        .nav__num:hover {
+            color: var(--text-1);
+            border-color: var(--border);
+        }
+
+        .nav__num.is-active {
+            color: var(--blue);
+            border-color: var(--blue-dim);
+        }
+
+        .nav__cta {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--blue);
+            border: 1px solid var(--blue-dim);
+            border-radius: 4px;
+            padding: 6px 14px;
+            margin-left: 8px;
+            transition: background 0.15s;
+            text-decoration: none;
+        }
+
+        .nav__cta:hover {
+            background: var(--blue-dim);
+            border-color: var(--blue-dim);
+        }
+
+        .hero {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 152px var(--pad-x) 32px;
+        }
+
+        .hero__eyebrow {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 28px;
+        }
+
+        .hero__title {
+            font-size: clamp(48px, 7vw, 88px);
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--text-1);
+            margin-bottom: 44px;
+        }
+
+        .hero__title span {
+            color: var(--blue);
+            font-weight: 300;
+        }
+
+        .hero__meta {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .hero__meta-label {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 4px;
+        }
+
+        .hero__meta-value {
+            font-size: 13px;
+            color: var(--text-2);
+        }
+
+        .hero__lede {
+            font-size: 17px;
+            color: var(--text-2);
+            line-height: 1.75;
+            max-width: 580px;
+            border-left: 2px solid var(--blue);
+            padding-left: 24px;
+            margin-bottom: 48px;
+        }
+
+        .intro {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 var(--pad-x) 48px;
+        }
+
+        .intro p {
+            font-size: 15px;
+            color: var(--text-2);
+            line-height: 1.8;
+            margin-bottom: 14px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .intro strong {
+            color: var(--text-1);
+            font-weight: 500;
+        }
+
+        .loading {
+            padding: 80px var(--pad-x);
+            text-align: center;
+        }
+
+        .loading__dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue);
+            margin: 0 3px;
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        .loading__dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading__dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            80%,
+            100% {
+                opacity: 0.2;
+            }
+
+            40% {
+                opacity: 1;
+            }
+        }
+
+        .principle {
+            padding: 56px var(--pad-x);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .principle:nth-child(even) {
+            background: var(--surface);
+        }
+
+        .principle__inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .principle__tag {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+
+        .principle__num {
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--text-3);
+            margin-bottom: 6px;
+        }
+
+        .principle__title {
+            font-family: var(--serif);
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text-1);
+            margin-bottom: 20px;
+        }
+
+        .principle__rule {
+            width: 28px;
+            height: 2px;
+            background: var(--blue);
+            margin-bottom: 24px;
+        }
+
+        .principle__body p {
+            font-size: 16px;
+            color: var(--text-2);
+            line-height: 1.8;
+            max-width: 580px;
+            margin-bottom: 16px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .principle__body strong {
+            color: var(--text-1);
+            font-weight: 500;
+        }
+
+        .principle__body ul,
+        .principle__body ol {
+            padding-left: 20px;
+            margin-bottom: 16px;
+            max-width: 580px;
+        }
+
+        .principle__body li {
+            font-size: 16px;
+            color: var(--text-2);
+            line-height: 1.8;
+            margin-bottom: 6px;
+        }
+
+        .principle__body blockquote,
+        .principle__body pre {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--blue);
+            border-radius: 0 4px 4px 0;
+            padding: 16px 20px;
+            margin: 16px 0 20px;
+            max-width: 560px;
+        }
+
+        .principle:nth-child(even) .principle__body blockquote,
+        .principle:nth-child(even) .principle__body pre {
+            background: var(--bg);
+        }
+
+        .principle__body blockquote p,
+        .principle__body pre code {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--text-1);
+            line-height: 1.7;
+            margin: 0;
+            max-width: 100%;
+            text-align: left;
+            hyphens: none;
+        }
+
+        .principle__body code {
+            font-family: var(--mono);
+            font-size: 13px;
+            background: var(--surface);
+            color: var(--blue);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: none;
+        }
+
+        .principle__body hr {
+            display: none;
+        }
+
+        .contributors {
+            background: var(--surface);
+            padding: 80px var(--pad-x);
+        }
+
+        .contributors__inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .contributors__label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+
+        .contributors__sub {
+            font-size: 13px;
+            color: var(--text-3);
+            margin-bottom: 40px;
+        }
+
+        .contributors__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            list-style: none;
+        }
+
+        .contributors__grid li {
+            background: var(--bg);
+            border: 0.5px solid var(--border);
+            border-radius: 4px;
+            padding: 14px 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .contribute {
+            background: #111110;
+            padding: 64px var(--pad-x);
+            text-align: center;
+        }
+
+        .contribute h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #f0ede8;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+
+        .contribute p {
+            font-size: 15px;
+            color: #777770;
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto 24px;
+        }
+
+        .contribute a {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+            border: 1px solid rgba(26, 107, 255, 0.27);
+            border-radius: 3px;
+            padding: 10px 24px;
+            transition: background 0.15s;
+            text-decoration: none;
+        }
+
+        .contribute a:hover {
+            background: rgba(26, 107, 255, 0.13);
+        }
+
+        .footer {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 32px var(--pad-x);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer__brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-3);
+        }
+
+        .footer__dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue);
+            flex-shrink: 0;
+        }
+
+        .footer__also {
+            font-size: 11px;
+            color: var(--text-3);
+            letter-spacing: 0.05em;
+        }
+
+        .footer__also a {
+            color: #FF1F1F;
+            border-bottom-color: #ffe5e5;
+        }
+
+        .footer__author {
+            font-size: 11px;
+            color: var(--text-3);
+            letter-spacing: 0.05em;
+        }
+
+        .footer__author a {
+            color: var(--blue);
+            border: none;
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                --pad-x: 20px;
+            }
+
+            .nav {
+                padding: 0 var(--pad-x);
+                height: auto;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .nav__brand {
+                font-size: 12px;
+            }
+
+            .nav__right {
+                width: 100%;
+            }
+
+            .nav__nums {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .nav__num {
+                width: auto;
+                height: 24px;
+                padding: 0 2px;
+                font-size: 9px;
+                flex: 1;
+                text-align: center;
+                border-radius: 3px;
+            }
+
+            .nav__cta {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 140px;
+            }
+
+            .hero__meta {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .principle__body p,
+            .principle__body li {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="#" class="nav__brand">Solution Architect Manifesto</a>
+        <div style="display:flex; align-items:center; gap:8px;">
+            <div class="nav__nums" id="js-nav-nums"><a class="nav__num" href="#p1">01</a>
+<a class="nav__num" href="#p2">02</a>
+<a class="nav__num" href="#p3">03</a>
+<a class="nav__num" href="#p4">04</a>
+<a class="nav__num" href="#p5">05</a>
+<a class="nav__num" href="#p6">06</a>
+<a class="nav__num" href="#p7">07</a>
+<a class="nav__num" href="#p8">08</a>
+<a class="nav__num" href="#p9">09</a>
+<a class="nav__num" href="#p10">10</a>
+<a class="nav__num" href="#p11">11</a>
+<a class="nav__num" href="#p12">12</a>
+<a class="nav__num" href="#p13">13</a></div>
+            <a class="nav__cta" href="https://github.com/glnv/solutionarchitectmanifesto-v2" target="_blank"
+                rel="noopener">Contribute</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <p class="hero__eyebrow">A Field Guide For</p>
+        <h1 class="hero__title">Solution<br><span>Architect</span></h1>
+        <div class="hero__meta">
+            <div>
+                <p class="hero__meta-label">Author</p>
+                <p class="hero__meta-value"><a href="https://www.linkedin.com/in/glennvanderlinden/" target="_blank"
+                        rel="noopener">Glenn Vanderlinden</a></p>
+            </div>
+            <div>
+                <p class="hero__meta-label">Maintained on</p>
+                <p class="hero__meta-value"><a href="https://github.com/glnv/solutionarchitectmanifesto-v2"
+                        target="_blank" rel="noopener">GitHub</a></p>
+            </div>
+            <div>
+                <p class="hero__meta-label">Focus</p>
+                <p class="hero__meta-value">Analytics, Data, Martech</p>
+            </div>
+        </div>
+        <p class="hero__lede">A statement of beliefs deemed indispensable to be a successful solution architect. Based
+            on 10+ years of experience. Open to contributions from the community.</p>
+    </section>
+
+    <div id="js-intro" class="intro"><p>A solution architect creates the overall technical vision for a specific solution to a business problem.</p>
+<p>The manifesto is a statement of beliefs that are deemed indispensable in order to be a successful solution architect* in the field of analytics, data, martech, etc.</p>
+<p>The initial version of the solution architect manifesto was created by <a href="https://www.linkedin.com/in/glennvanderlinden/">Glenn Vanderlinden</a>, co-founder at <a href="https://human37.com">Human37</a>. It is based on ~10 years experience and is heavily influenced by working with some of the most brilliant solution architects from leading analytics companies and vendors in the field.</p>
+<p>The objective of this manifesto is to become a reference in the analytics, martech &amp; data industry. Therefore <strong>all solution architects or equivalent roles are invited to contribute</strong>. Contributing to the solution architect manifesto is possible via Github which at the same time also represents the manifesto&#39;s changelog**. The manifesto now belongs to the web and the community of solution architects out there.</p>
+<p>*note that the concepts can be transferred into similar roles and that solution architect is merely a reference title
+**note that the repo owner remains the curator of the entries made by the community.</p>
+<hr>
+</div>
+
+    <div id="js-principles">
+<article class="principle" id="p1">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">01 / 13</p>
+    <h2 class="principle__title">Assume a client's briefing is incomplete</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>Clients will share the problem from their perspective or role. This means that the briefing you receive is more often than not incomplete. <em><strong>Do not assume that the problem that is presented is the actual problem to be solved</strong></em>. Be aware of this and explore additional perspectives. Never assume, always validate.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p2">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">02 / 13</p>
+    <h2 class="principle__title">Articulate the problem, then work it</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>In order to provide the correct solution for a problem, the problem must be articulated precisely. Kidlin&#39;s law reminds us why this is important:</p>
+<blockquote>
+<p>&quot;If you write the problem down clearly, then the matter is half solved.&quot;</p>
+</blockquote>
+<p>To do so, be relentless on the details and the use of words. <em><strong>Words make up our perception of reality therefore it is important to be precise</strong></em>. Repeat your understanding of the problem back to the briefing party as a recap in order for both parties to agree upon the exact and precise description of the problem at hand. Use visual aids such as (digital) whiteboards if needed to support your interpretation.</p>
+<p>Another way of thinking about this phase of articulating the problem can be found in Ben Horowitz&#39; book &quot;the hard thing about hard things&quot; on page 124 even though he attributes the quote to Tony Robbins.</p>
+<blockquote>
+<p>&quot;If you don&#39;t know what you want, the chances that you&#39;ll get it are extremely low.&quot;</p>
+</blockquote>
+<p>In other words — confirm with the client they have a crystal clear idea about what they want. This can be the problem to be solved or the desired outcome a solution should generate. If this is not clear your first task is to help them articulate this. Otherwise it will be nearly impossible for you to create a satisfactory outcome.</p>
+<p>Once the problem has been articulated clearly and precisely you can start to &quot;work the problem&quot;. Working the problem is a concept brought to my attention by <a href="https://en.wikipedia.org/wiki/Chris_Hadfield">Chris Hadfield</a> in his book &quot;<a href="https://www.goodreads.com/book/show/18170143-an-astronaut-s-guide-to-life-on-earth">An astronaut&#39;s guide to life on earth</a>.&quot;</p>
+<blockquote>
+<p>&quot;Working the problem&quot; is NASA-speak for descending one decision tree after another, methodically looking for a solution until you run out of oxygen.</p>
+</blockquote>
+<p>Apply this by deconstructing the problem into smaller pieces and solving them individually. <em><strong>There is no such thing as a single problem. Every problem is a composition of smaller problems</strong></em>. Once the problem has been scoped clearly, you can work the problem by solving each of the sub-problems.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p3">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">03 / 13</p>
+    <h2 class="principle__title">Meetings are for working the problem</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>Meetings are part of working the problem. It is a misconception that the purpose of a meeting is to &quot;brief&quot; or simply &quot;update&quot; and that the actual work happens outside of the meeting in isolation. Consider every meeting, including the initial briefing, an opportunity to get closer to the solution you seek. Problem solving happens with the client as he/she (unknowingly) holds most, if not all, of the info required to obtain a deep understanding of the problem and, as a result, the required solution. <em><strong>Progress should be booked after every meeting</strong></em>. This can take the form of having a better understanding of the problem, the discovery of new paths to explore or paths being crossed off.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p4">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">04 / 13</p>
+    <h2 class="principle__title">Always be exploring, always be testing</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>A solution architect stops being a solution architect when he/she ceases to explore. You must be comfortable discovering the unknown. <em><strong>Solution architects are not necessarily hired to &quot;know&quot;, they are hired to find out</strong></em>. We live for the search and clients hire us to end theirs.</p>
+<p>Make sure you have a sandbox. It is a laboratory where both exploration and validation happen. Don&#39;t provide client advice purely based on a hypothesis or non-validated documentation. &quot;Did you test it?&quot; is a rhetorical question you should ask yourself every time a recommendation is made or a solution shipped.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p5">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">05 / 13</p>
+    <h2 class="principle__title">Answers ≠ solutions</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>You can provide answers without solving the problem. You will encounter this often when engaging with vendor support. Unfortunately it is a mistake many solution architects are guilty of making.</p>
+<p>Example — you tried to solve a business question using a specific feature within an analytics platform. However, this approach failed and you logged a support ticket as a result. Support might tell you that what you are trying to achieve is not possible with this feature as it does not function in the way you expected it to. Support then elaborates on the constraints of the feature and its inner workings. In this example the support team has answered your question, but the problem remains unsolved.</p>
+<p><em><strong>While answers are a response to a question. Solutions are a response to a problem</strong></em>. Don&#39;t make the mistake of assuming your job is done by providing an answer. If the path towards a solution is blocked, don&#39;t take no for an answer but provide an alternative solution.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p6">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">06 / 13</p>
+    <h2 class="principle__title">Ticket immediately</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>Ticket immediately in cases where additional support is required internally/externally. Internal/external resources often rely on their specific service level agreements (SLAs) towards your request that require them to provide a first response within a specific timeframe (e.g. 24 hours). The longer you wait to log a ticket, the longer you will have to wait to receive an answer. As a result, the longer it takes to get to a final solution for the problem.</p>
+<p>Here&#39;s an example — imagine you realise at 10h00 that you need external resources to help you solve a problem. Waiting 6 hours before logging (logging at 16h00) means that getting an answer to your question is potentially delayed by 6 hours under a 24 hour SLA as your support line has up until 16h00 the next day to reply. Logging a ticket immediately at 10h00 however ensures you have a first response before 10h00 the next day. Not only will this ensure that the solution is reached faster, it also means it reduces the potential risk of breaking your SLA versus the client. Therefore <em><strong>ticket immediately when depending on resources outside of your control</strong></em>.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p7">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">07 / 13</p>
+    <h2 class="principle__title">Look for patterns</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>At the solution design level:</p>
+<p>A solution is a combination of different smaller solutions. Think of them as modules or patterns that can be reused as part of your next solution in an alternative context.</p>
+<p><em><strong>Consider every solution you ever designed as a set of patterns that can be reused to solve future problems, even if the context, tool or client changes</strong></em>.</p>
+<p>At the tool level:</p>
+<p>Tools operate on patterns. Take the principles of event design for instance. Recognising patterns upon which tools are built allows you to go from &quot;I can do tool X, not tool Y&quot; to &quot;I master pattern A, and that is transferable to tool X, Y and Z&quot;.</p>
+<p><em><strong>If you master the patterns upon which tools are built you can &quot;easily&quot; switch between tools. This approach prevents lock-in.</strong></em></p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p8">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">08 / 13</p>
+    <h2 class="principle__title">Check, double-check, deploy and check again</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>Run sanity checks before deploying a solution. Double-check. Then check again once everything is in production.</p>
+<p>A practical example of this applied to an analytics setup would be:</p>
+<ul>
+<li>Check your setup before you deploy.</li>
+<li>Double-check or go through peer review.</li>
+<li>Verify that all data comes in properly once deployed in production.</li>
+</ul>
+<p>This principle is preceded by the &quot;did you test it?&quot; check mentioned earlier.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p9">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">09 / 13</p>
+    <h2 class="principle__title">Simplicity is the ultimate sophistication</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>Choose simplicity over complexity. Both in the design of the solution and in the communication of the solution. Avoid buzzword or keyword stuffing at all times. Simple is better.</p>
+<blockquote>
+<p>&quot;Make it as complex as you need to, not as complex as you can.&quot;</p>
+</blockquote>
+<p>We can borrow an idea from philosophy called Occam&#39;s razor:</p>
+<blockquote>
+<p>&quot;Occam&#39;s razor is the problem-solving principle that recommends searching for explanations constructed with the smallest possible set of elements.&quot; In other words: the simpler explanation of an entity is to be preferred.</p>
+</blockquote>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p10">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">10 / 13</p>
+    <h2 class="principle__title">Document or perish</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>Always provide minimum viable documentation. Documentation ensures consistency when operating the solution as well as knowledge transfer when team composition changes. <em><strong>Solutions are not final as long as they have not been documented</strong></em>. Don&#39;t worry about what documentation should look like (Confluence, Notion, Google doc, ...). Just make sure that creating and updating documentation is an easy task. The act of documenting is more important than the form it takes.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p11">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">11 / 13</p>
+    <h2 class="principle__title">Remember all measurements are proxies</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>All data is a proxy, a representation of something else. Some proxies provide valuable insights; others can mislead. What works today may not tomorrow. A solution architect must always question the proxy — what does this data really represent, is the way that we&#39;re calculating it valid, and is it still useful?</p>
+<p>Data points on a dashboard or lines on a chart are measurements, not truths. It&#39;s easy to fall into the trap of hyper-focusing on metrics without considering their context or relevance. A metric that served as an effective proxy for business success at one point may not tell the whole story as circumstances change.</p>
+<p>For example, 0-60 mph times are a common metric in car performance testing, but as automakers began optimizing for this specific metric (using features like launch control), it no longer told the full story of a car&#39;s real-world performance. In response, Car and Driver now tests both 0-60 and rolling start-to-60 times. Interestingly, rolling start times often turn out slower, revealing a more accurate picture of performance when the artificial advantages are taken away.</p>
+<p>Regularly challenge and reassess whether the data you&#39;re interpreting still reflects reality. <em><strong>Ask yourself: what is this data really saying?</strong></em> Don&#39;t stick to outdated proxies just because you want a clean time-series of data. Ensure your recommendations are based on a true understanding of what the data suggests, rather than just what the dashboard displays.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p12">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">12 / 13</p>
+    <h2 class="principle__title">Accept that sometimes no solution exists (yet)</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>Not every problem will yield to the tools, time, budget, data, or technology at your disposal. Part of the architect&#39;s responsibility is to recognise true impossibility — or disproportionate cost/benefit — early, communicate it transparently, and explore alternative paths: reframing the problem, reducing its scope, postponing it until conditions change, or deciding consciously to live with it. Declaring &quot;no solution&quot; is not defeat; it is intellectual honesty that preserves resources and trust for challenges that can be solved.</p>
+</div>
+  </div>
+</article>
+
+<article class="principle" id="p13">
+  <div class="principle__inner">
+    <span class="principle__tag">Principle</span>
+    <p class="principle__num">13 / 13</p>
+    <h2 class="principle__title">Show, don't tell</h2>
+    <div class="principle__rule"></div>
+    <div class="principle__body"><p>Use visual aids to explain a solution or problem. <em><strong>A picture is worth a thousand words</strong></em>.</p>
+<p>If possible and appropriate show what a solution could look like in the form of a demo or mock-up. Remember — <em><strong>real pros do live demos</strong></em>.</p>
+<hr>
+</div>
+  </div>
+</article>
+</div>
+    </div>
+
+    <section class="contributors">
+        <div class="contributors__inner">
+            <p class="contributors__label">Contributors</p>
+            <p class="contributors__sub">Everyone who shaped this manifesto.</p>
+            <ul class="contributors__grid" id="js-contributors"><li><a href="https://www.linkedin.com/in/ianagcruz/">Cruz, Ian</a> | ex-Mixpanel
+</li>
+<li><a href="https://www.linkedin.com/in/kal-kola/">Kola, Kal</a> | Segment
+</li>
+<li><a href="https://www.linkedin.com/in/merveen-pandoo/">Pandoo, Merveen</a> | Mixpanel
+</li>
+<li><a href="https://www.linkedin.com/in/mgradu/">Radu, Mihai</a> | Amplitude
+</li>
+<li><a href="https://www.linkedin.com/in/ward-rushton/">Rushton, Ward</a> | evolv Consulting
+</li>
+<li><a href="https://www.linkedin.com/in/david-solito-774b2a14/">Solito, David</a> | Adwire
+</li>
+<li><a href="https://www.linkedin.com/in/maxime-vandenbussche-bb852365/">Vandenbussche, Maxime</a> | Human37
+</li>
+<li><a href="https://www.linkedin.com/in/glennvanderlinden/">Vanderlinden, Glenn</a> | Human37
+</li></ul>
+        </div>
+    </section>
+
+    <section class="contribute">
+        <h2>Contribute to the manifesto</h2>
+        <p>The manifesto belongs to the community of solution architects. Fork the repo, add your principle, and submit
+            a pull request.</p>
+        <a href="https://github.com/glnv/solutionarchitectmanifesto-v2" target="_blank" rel="noopener">View on GitHub
+            ↗</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer__brand"><span class="footer__dot"></span>Solution Architect Manifesto</div>
+        <p class="footer__also">Also by Glenn Vanderlinden: <a href="https://thegreatconsultant.com">The Great
+                Consultant</a></p>
+        <p class="footer__author">Glenn Vanderlinden, Co-founder <a href="https://human37.com" target="_blank"
+                rel="noopener">Human37</a></p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+    <script>
+        (() => {
+            const RAW_URL = 'https://raw.githubusercontent.com/glnv/solutionarchitectmanifesto-v2/main/sam-manifesto.md'
+            const isPrebuilt = document.querySelector('.principle') !== null
+            if (isPrebuilt) { initScrollSpy(); return }
+
+            function splitSections(md) {
+                const lines = md.split('\n')
+                const out = { intro: [], principles: [], contributors: [] }
+                let current = 'intro'
+                for (const line of lines) {
+                    if (/^##\s+Principles/i.test(line)) { current = 'principles'; continue }
+                    if (/^##\s+Contributors/i.test(line)) { current = 'contributors'; continue }
+                    if (current === 'intro' && /^#/.test(line)) continue
+                    out[current].push(line)
+                }
+                return { intro: out.intro.join('\n').trim(), principles: out.principles.join('\n'), contributors: out.contributors.join('\n') }
+            }
+
+            function renderIntro(md) {
+                const el = document.getElementById('js-intro')
+                if (!el || !md) return
+                el.innerHTML = marked.parse(md)
+            }
+
+            function renderPrinciples(md) {
+                const chunks = md.split(/(?=^### )/m).filter(c => c.trimStart().startsWith('### '))
+                const total = String(chunks.length).padStart(2, '0')
+                const navEl = document.getElementById('js-nav-nums')
+                const wrap = document.createDocumentFragment()
+
+                chunks.forEach((chunk, i) => {
+                    const lines = chunk.split('\n')
+                    const titleText = lines[0].replace(/^###\s+\d+\.\s*/, '')
+                    const bodyMd = lines.slice(1).join('\n')
+                    const num = String(i + 1).padStart(2, '0')
+                    const id = `p${i + 1}`
+
+                    const section = document.createElement('article')
+                    section.className = 'principle'
+                    section.id = id
+                    section.innerHTML = `
+        <div class="principle__inner">
+          <span class="principle__tag">Principle</span>
+          <p class="principle__num">${num} / ${total}</p>
+          <h2 class="principle__title">${titleText}</h2>
+          <div class="principle__rule"></div>
+          <div class="principle__body">${marked.parse(bodyMd)}</div>
+        </div>`
+                    wrap.appendChild(section)
+
+                    const a = document.createElement('a')
+                    a.className = 'nav__num'
+                    a.href = `#${id}`
+                    a.textContent = num
+                    navEl.appendChild(a)
+                })
+
+                document.getElementById('js-principles').innerHTML = ''
+                document.getElementById('js-principles').appendChild(wrap)
+                initScrollSpy()
+            }
+
+            function renderContributors(md) {
+                const el = document.getElementById('js-contributors')
+                md.split('\n')
+                    .filter(l => /^-\s/.test(l.trim()))
+                    .sort((a, b) => a.localeCompare(b))
+                    .forEach(line => {
+                        const li = document.createElement('li')
+                        li.innerHTML = marked.parse(line.replace(/^-\s*/, '')).replace(/<\/?p>/g, '')
+                        el.appendChild(li)
+                    })
+            }
+
+            fetch(RAW_URL)
+                .then(r => r.text())
+                .then(md => {
+                    const { intro, principles, contributors } = splitSections(md)
+                    renderIntro(intro)
+                    renderPrinciples(principles)
+                    renderContributors(contributors)
+                })
+                .catch(err => {
+                    document.getElementById('js-principles').innerHTML =
+                        `<div class="loading"><p style="color:var(--text-3);font-size:13px;">Could not load content. <a href="https://github.com/glnv/solutionarchitectmanifesto-v2">View on GitHub</a></p></div>`
+                    console.error('SAM fetch error:', err)
+                })
+
+            function initScrollSpy() {
+                const nums = document.querySelectorAll('.nav__num')
+                const sections = document.querySelectorAll('.principle')
+                const observer = new IntersectionObserver(entries => {
+                    for (const entry of entries) {
+                        if (!entry.isIntersecting) continue
+                        nums.forEach(n => n.classList.remove('is-active'))
+                        const active = document.querySelector(`.nav__num[href="#${entry.target.id}"]`)
+                        if (active) {
+                            active.classList.add('is-active')
+                            const strip = document.getElementById('js-nav-nums')
+                            const stripRect = strip.getBoundingClientRect()
+                            const activeRect = active.getBoundingClientRect()
+                            strip.scrollLeft += activeRect.left - stripRect.left - (stripRect.width / 2) + (activeRect.width / 2)
+                        }
+                    }
+                }, { rootMargin: '-40% 0px -55% 0px' })
+                sections.forEach(s => observer.observe(s))
+            }
+        })()
+    </script>
+</body>
+
+</html>

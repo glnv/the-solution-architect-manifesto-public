@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Solution Architect Manifesto</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="description"
+        content="A statement of beliefs deemed indispensable to be a successful solution architect in analytics, data and martech.">
+    <meta property="og:title" content="The Solution Architect Manifesto">
+    <meta property="og:description"
+        content="A statement of beliefs deemed indispensable to be a successful solution architect in analytics, data and martech.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://solutionarchitectmanifesto.com">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="The Solution Architect Manifesto">
+    <meta name="twitter:description"
+        content="A statement of beliefs deemed indispensable to be a successful solution architect in analytics, data and martech.">
+    <!-- Anonymous Analytics -->
+    <script defer src="https://cloud.umami.is/script.js"
+        data-website-id="4221c7d1-a2ac-4956-a077-d84b4269384a"></script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f7f6f4;
+            --border: #e8e6e2;
+            --blue: #1A6BFF;
+            --blue-dim: #e0eaff;
+            --text-1: #111110;
+            --text-2: #777770;
+            --text-3: #b8b6b0;
+            --sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            --mono: 'Courier New', Courier, monospace;
+            --serif: Georgia, serif;
+            --max-w: 920px;
+            --pad-x: 48px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text-1);
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a {
+            color: var(--blue);
+            text-decoration: none;
+            border-bottom: 1px solid var(--blue-dim);
+        }
+
+        a:hover {
+            border-bottom-color: var(--blue);
+        }
+
+        .nav {
+            position: fixed;
+            inset: 0 0 auto;
+            z-index: 100;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            height: 56px;
+            padding: 0 var(--pad-x);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav__brand {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            border: none;
+        }
+
+        .nav__nums {
+            display: flex;
+            gap: 2px;
+        }
+
+        .nav__num {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: var(--text-3);
+            border: 1px solid transparent;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: color 0.15s, border-color 0.15s;
+        }
+
+        .nav__num:hover {
+            color: var(--text-1);
+            border-color: var(--border);
+        }
+
+        .nav__num.is-active {
+            color: var(--blue);
+            border-color: var(--blue-dim);
+        }
+
+        .nav__cta {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--blue);
+            border: 1px solid var(--blue-dim);
+            border-radius: 4px;
+            padding: 6px 14px;
+            margin-left: 8px;
+            transition: background 0.15s;
+            text-decoration: none;
+        }
+
+        .nav__cta:hover {
+            background: var(--blue-dim);
+            border-color: var(--blue-dim);
+        }
+
+        .hero {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 152px var(--pad-x) 32px;
+        }
+
+        .hero__eyebrow {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 28px;
+        }
+
+        .hero__title {
+            font-size: clamp(48px, 7vw, 88px);
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--text-1);
+            margin-bottom: 44px;
+        }
+
+        .hero__title span {
+            color: var(--blue);
+            font-weight: 300;
+        }
+
+        .hero__meta {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+
+        .hero__meta-label {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 4px;
+        }
+
+        .hero__meta-value {
+            font-size: 13px;
+            color: var(--text-2);
+        }
+
+        .hero__lede {
+            font-size: 17px;
+            color: var(--text-2);
+            line-height: 1.75;
+            max-width: 580px;
+            border-left: 2px solid var(--blue);
+            padding-left: 24px;
+            margin-bottom: 48px;
+        }
+
+        .intro {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 var(--pad-x) 48px;
+        }
+
+        .intro p {
+            font-size: 15px;
+            color: var(--text-2);
+            line-height: 1.8;
+            margin-bottom: 14px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .intro strong {
+            color: var(--text-1);
+            font-weight: 500;
+        }
+
+        .loading {
+            padding: 80px var(--pad-x);
+            text-align: center;
+        }
+
+        .loading__dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue);
+            margin: 0 3px;
+            animation: pulse 1.2s ease-in-out infinite;
+        }
+
+        .loading__dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading__dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            80%,
+            100% {
+                opacity: 0.2;
+            }
+
+            40% {
+                opacity: 1;
+            }
+        }
+
+        .principle {
+            padding: 56px var(--pad-x);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .principle:nth-child(even) {
+            background: var(--surface);
+        }
+
+        .principle__inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .principle__tag {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+
+        .principle__num {
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--text-3);
+            margin-bottom: 6px;
+        }
+
+        .principle__title {
+            font-family: var(--serif);
+            font-size: clamp(28px, 4vw, 48px);
+            font-weight: 400;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            color: var(--text-1);
+            margin-bottom: 20px;
+        }
+
+        .principle__rule {
+            width: 28px;
+            height: 2px;
+            background: var(--blue);
+            margin-bottom: 24px;
+        }
+
+        .principle__body p {
+            font-size: 16px;
+            color: var(--text-2);
+            line-height: 1.8;
+            max-width: 580px;
+            margin-bottom: 16px;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .principle__body strong {
+            color: var(--text-1);
+            font-weight: 500;
+        }
+
+        .principle__body ul,
+        .principle__body ol {
+            padding-left: 20px;
+            margin-bottom: 16px;
+            max-width: 580px;
+        }
+
+        .principle__body li {
+            font-size: 16px;
+            color: var(--text-2);
+            line-height: 1.8;
+            margin-bottom: 6px;
+        }
+
+        .principle__body blockquote,
+        .principle__body pre {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--blue);
+            border-radius: 0 4px 4px 0;
+            padding: 16px 20px;
+            margin: 16px 0 20px;
+            max-width: 560px;
+        }
+
+        .principle:nth-child(even) .principle__body blockquote,
+        .principle:nth-child(even) .principle__body pre {
+            background: var(--bg);
+        }
+
+        .principle__body blockquote p,
+        .principle__body pre code {
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--text-1);
+            line-height: 1.7;
+            margin: 0;
+            max-width: 100%;
+            text-align: left;
+            hyphens: none;
+        }
+
+        .principle__body code {
+            font-family: var(--mono);
+            font-size: 13px;
+            background: var(--surface);
+            color: var(--blue);
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: none;
+        }
+
+        .principle__body hr {
+            display: none;
+        }
+
+        .contributors {
+            background: var(--surface);
+            padding: 80px var(--pad-x);
+        }
+
+        .contributors__inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .contributors__label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+
+        .contributors__sub {
+            font-size: 13px;
+            color: var(--text-3);
+            margin-bottom: 40px;
+        }
+
+        .contributors__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            list-style: none;
+        }
+
+        .contributors__grid li {
+            background: var(--bg);
+            border: 0.5px solid var(--border);
+            border-radius: 4px;
+            padding: 14px 18px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .contribute {
+            background: #111110;
+            padding: 64px var(--pad-x);
+            text-align: center;
+        }
+
+        .contribute h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #f0ede8;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+
+        .contribute p {
+            font-size: 15px;
+            color: #777770;
+            line-height: 1.7;
+            max-width: 480px;
+            margin: 0 auto 24px;
+        }
+
+        .contribute a {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+            border: 1px solid rgba(26, 107, 255, 0.27);
+            border-radius: 3px;
+            padding: 10px 24px;
+            transition: background 0.15s;
+            text-decoration: none;
+        }
+
+        .contribute a:hover {
+            background: rgba(26, 107, 255, 0.13);
+        }
+
+        .footer {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 32px var(--pad-x);
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer__brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-3);
+        }
+
+        .footer__dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue);
+            flex-shrink: 0;
+        }
+
+        .footer__also {
+            font-size: 11px;
+            color: var(--text-3);
+            letter-spacing: 0.05em;
+        }
+
+        .footer__also a {
+            color: #FF1F1F;
+            border-bottom-color: #ffe5e5;
+        }
+
+        .footer__author {
+            font-size: 11px;
+            color: var(--text-3);
+            letter-spacing: 0.05em;
+        }
+
+        .footer__author a {
+            color: var(--blue);
+            border: none;
+        }
+
+        @media (max-width: 600px) {
+            :root {
+                --pad-x: 20px;
+            }
+
+            .nav {
+                padding: 0 var(--pad-x);
+                height: auto;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .nav__brand {
+                font-size: 12px;
+            }
+
+            .nav__right {
+                width: 100%;
+            }
+
+            .nav__nums {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .nav__num {
+                width: auto;
+                height: 24px;
+                padding: 0 2px;
+                font-size: 9px;
+                flex: 1;
+                text-align: center;
+                border-radius: 3px;
+            }
+
+            .nav__cta {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 140px;
+            }
+
+            .hero__meta {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .principle__body p,
+            .principle__body li {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="nav">
+        <a href="#" class="nav__brand">Solution Architect Manifesto</a>
+        <div style="display:flex; align-items:center; gap:8px;">
+            <div class="nav__nums" id="js-nav-nums"><!-- BUILD:nav --></div>
+            <a class="nav__cta" href="https://github.com/glnv/solutionarchitectmanifesto-v2" target="_blank"
+                rel="noopener">Contribute</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <p class="hero__eyebrow">A Field Guide For</p>
+        <h1 class="hero__title">Solution<br><span>Architect</span></h1>
+        <div class="hero__meta">
+            <div>
+                <p class="hero__meta-label">Author</p>
+                <p class="hero__meta-value"><a href="https://www.linkedin.com/in/glennvanderlinden/" target="_blank"
+                        rel="noopener">Glenn Vanderlinden</a></p>
+            </div>
+            <div>
+                <p class="hero__meta-label">Maintained on</p>
+                <p class="hero__meta-value"><a href="https://github.com/glnv/solutionarchitectmanifesto-v2"
+                        target="_blank" rel="noopener">GitHub</a></p>
+            </div>
+            <div>
+                <p class="hero__meta-label">Focus</p>
+                <p class="hero__meta-value">Analytics, Data, Martech</p>
+            </div>
+        </div>
+        <p class="hero__lede">A statement of beliefs deemed indispensable to be a successful solution architect. Based
+            on 10+ years of experience. Open to contributions from the community.</p>
+    </section>
+
+    <div id="js-intro" class="intro"><!-- BUILD:intro --></div>
+
+    <div id="js-principles"><!-- BUILD:principles -->
+        <div class="loading">
+            <span class="loading__dot"></span>
+            <span class="loading__dot"></span>
+            <span class="loading__dot"></span>
+        </div>
+    </div>
+
+    <section class="contributors">
+        <div class="contributors__inner">
+            <p class="contributors__label">Contributors</p>
+            <p class="contributors__sub">Everyone who shaped this manifesto.</p>
+            <ul class="contributors__grid" id="js-contributors"><!-- BUILD:contributors --></ul>
+        </div>
+    </section>
+
+    <section class="contribute">
+        <h2>Contribute to the manifesto</h2>
+        <p>The manifesto belongs to the community of solution architects. Fork the repo, add your principle, and submit
+            a pull request.</p>
+        <a href="https://github.com/glnv/solutionarchitectmanifesto-v2" target="_blank" rel="noopener">View on GitHub
+            ↗</a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer__brand"><span class="footer__dot"></span>Solution Architect Manifesto</div>
+        <p class="footer__also">Also by Glenn Vanderlinden: <a href="https://thegreatconsultant.com">The Great
+                Consultant</a></p>
+        <p class="footer__author">Glenn Vanderlinden, Co-founder <a href="https://human37.com" target="_blank"
+                rel="noopener">Human37</a></p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+    <script>
+        (() => {
+            const RAW_URL = 'https://raw.githubusercontent.com/glnv/solutionarchitectmanifesto-v2/main/sam-manifesto.md'
+            const isPrebuilt = document.querySelector('.principle') !== null
+            if (isPrebuilt) { initScrollSpy(); return }
+
+            function splitSections(md) {
+                const lines = md.split('\n')
+                const out = { intro: [], principles: [], contributors: [] }
+                let current = 'intro'
+                for (const line of lines) {
+                    if (/^##\s+Principles/i.test(line)) { current = 'principles'; continue }
+                    if (/^##\s+Contributors/i.test(line)) { current = 'contributors'; continue }
+                    if (current === 'intro' && /^#/.test(line)) continue
+                    out[current].push(line)
+                }
+                return { intro: out.intro.join('\n').trim(), principles: out.principles.join('\n'), contributors: out.contributors.join('\n') }
+            }
+
+            function renderIntro(md) {
+                const el = document.getElementById('js-intro')
+                if (!el || !md) return
+                el.innerHTML = marked.parse(md)
+            }
+
+            function renderPrinciples(md) {
+                const chunks = md.split(/(?=^### )/m).filter(c => c.trimStart().startsWith('### '))
+                const total = String(chunks.length).padStart(2, '0')
+                const navEl = document.getElementById('js-nav-nums')
+                const wrap = document.createDocumentFragment()
+
+                chunks.forEach((chunk, i) => {
+                    const lines = chunk.split('\n')
+                    const titleText = lines[0].replace(/^###\s+\d+\.\s*/, '')
+                    const bodyMd = lines.slice(1).join('\n')
+                    const num = String(i + 1).padStart(2, '0')
+                    const id = `p${i + 1}`
+
+                    const section = document.createElement('article')
+                    section.className = 'principle'
+                    section.id = id
+                    section.innerHTML = `
+        <div class="principle__inner">
+          <span class="principle__tag">Principle</span>
+          <p class="principle__num">${num} / ${total}</p>
+          <h2 class="principle__title">${titleText}</h2>
+          <div class="principle__rule"></div>
+          <div class="principle__body">${marked.parse(bodyMd)}</div>
+        </div>`
+                    wrap.appendChild(section)
+
+                    const a = document.createElement('a')
+                    a.className = 'nav__num'
+                    a.href = `#${id}`
+                    a.textContent = num
+                    navEl.appendChild(a)
+                })
+
+                document.getElementById('js-principles').innerHTML = ''
+                document.getElementById('js-principles').appendChild(wrap)
+                initScrollSpy()
+            }
+
+            function renderContributors(md) {
+                const el = document.getElementById('js-contributors')
+                md.split('\n')
+                    .filter(l => /^-\s/.test(l.trim()))
+                    .sort((a, b) => a.localeCompare(b))
+                    .forEach(line => {
+                        const li = document.createElement('li')
+                        li.innerHTML = marked.parse(line.replace(/^-\s*/, '')).replace(/<\/?p>/g, '')
+                        el.appendChild(li)
+                    })
+            }
+
+            fetch(RAW_URL)
+                .then(r => r.text())
+                .then(md => {
+                    const { intro, principles, contributors } = splitSections(md)
+                    renderIntro(intro)
+                    renderPrinciples(principles)
+                    renderContributors(contributors)
+                })
+                .catch(err => {
+                    document.getElementById('js-principles').innerHTML =
+                        `<div class="loading"><p style="color:var(--text-3);font-size:13px;">Could not load content. <a href="https://github.com/glnv/solutionarchitectmanifesto-v2">View on GitHub</a></p></div>`
+                    console.error('SAM fetch error:', err)
+                })
+
+            function initScrollSpy() {
+                const nums = document.querySelectorAll('.nav__num')
+                const sections = document.querySelectorAll('.principle')
+                const observer = new IntersectionObserver(entries => {
+                    for (const entry of entries) {
+                        if (!entry.isIntersecting) continue
+                        nums.forEach(n => n.classList.remove('is-active'))
+                        const active = document.querySelector(`.nav__num[href="#${entry.target.id}"]`)
+                        if (active) {
+                            active.classList.add('is-active')
+                            const strip = document.getElementById('js-nav-nums')
+                            const stripRect = strip.getBoundingClientRect()
+                            const activeRect = active.getBoundingClientRect()
+                            strip.scrollLeft += activeRect.left - stripRect.left - (stripRect.width / 2) + (activeRect.width / 2)
+                        }
+                    }
+                }, { rootMargin: '-40% 0px -55% 0px' })
+                sections.forEach(s => observer.observe(s))
+            }
+        })()
+    </script>
+</body>
+
+</html>
