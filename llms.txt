@@ -8,7 +8,7 @@ The Solution Architect Manifesto is a set of practitioner beliefs deemed indispe
 
 It was initiated by Glenn Vanderlinden, co-founder at Human37, and is open to contributions from the community of solution architects.
 
-The full content is maintained at: https://github.com/glnv/solutionarchitectmanifesto-v2/blob/main/sam-manifesto.md
+The full content is maintained at: https://github.com/glnv/the-solution-architect-manifesto-public/blob/main/sam-manifesto.md
 
 ## Principles
 
@@ -41,7 +41,7 @@ The full content is maintained at: https://github.com/glnv/solutionarchitectmani
 ## About
 
 - Website: https://solutionarchitectmanifesto.com
-- Source: https://github.com/glnv/solutionarchitectmanifesto-v2
+- Source: https://github.com/glnv/the-solution-architect-manifesto-public
 - Author: Glenn Vanderlinden (https://www.linkedin.com/in/glennvanderlinden/)
 - Organisation: Human37 (https://human37.com)
 - Related: The Great Consultant (https://thegreatconsultant.com)

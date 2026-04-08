@@ -574,7 +574,7 @@
         <a href="#" class="nav__brand">Solution Architect Manifesto</a>
         <div style="display:flex; align-items:center; gap:8px;">
             <div class="nav__nums" id="js-nav-nums"><!-- BUILD:nav --></div>
-            <a class="nav__cta" href="https://github.com/glnv/solutionarchitectmanifesto-v2" target="_blank"
+            <a class="nav__cta" href="https://github.com/glnv/the-solution-architect-manifesto-public" target="_blank"
                 rel="noopener">Contribute</a>
         </div>
     </nav>
@@ -590,7 +590,7 @@
             </div>
             <div>
                 <p class="hero__meta-label">Maintained on</p>
-                <p class="hero__meta-value"><a href="https://github.com/glnv/solutionarchitectmanifesto-v2"
+                <p class="hero__meta-value"><a href="https://github.com/glnv/the-solution-architect-manifesto-public"
                         target="_blank" rel="noopener">GitHub</a></p>
             </div>
             <div>
@@ -624,7 +624,7 @@
         <h2>Contribute to the manifesto</h2>
         <p>The manifesto belongs to the community of solution architects. Fork the repo, add your principle, and submit
             a pull request.</p>
-        <a href="https://github.com/glnv/solutionarchitectmanifesto-v2" target="_blank" rel="noopener">View on GitHub
+        <a href="https://github.com/glnv/the-solution-architect-manifesto-public" target="_blank" rel="noopener">View on GitHub
             ↗</a>
     </section>
 
@@ -639,7 +639,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
     <script>
         (() => {
-            const RAW_URL = 'https://raw.githubusercontent.com/glnv/solutionarchitectmanifesto-v2/main/sam-manifesto.md'
+            const RAW_URL = 'https://raw.githubusercontent.com/glnv/the-solution-architect-manifesto-public/main/sam-manifesto.md'
             const isPrebuilt = document.querySelector('.principle') !== null
             if (isPrebuilt) { initScrollSpy(); return }
 
@@ -722,7 +722,7 @@
                 })
                 .catch(err => {
                     document.getElementById('js-principles').innerHTML =
-                        `<div class="loading"><p style="color:var(--text-3);font-size:13px;">Could not load content. <a href="https://github.com/glnv/solutionarchitectmanifesto-v2">View on GitHub</a></p></div>`
+                        `<div class="loading"><p style="color:var(--text-3);font-size:13px;">Could not load content. <a href="https://github.com/glnv/the-solution-architect-manifesto-public">View on GitHub</a></p></div>`
                     console.error('SAM fetch error:', err)
                 })
 
