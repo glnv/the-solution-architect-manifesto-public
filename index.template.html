@@ -140,9 +140,10 @@
         }
 
         .hero {
-            max-width: var(--max-w);
-            margin: 0 auto;
-            padding: 152px var(--pad-x) 32px;
+            padding-top: 152px;
+            padding-bottom: 32px;
+            padding-left: max(var(--pad-x), calc((100vw - var(--max-w)) / 2));
+            padding-right: var(--pad-x);
         }
 
         .hero__eyebrow {
@@ -199,9 +200,8 @@
         }
 
         .intro {
-            max-width: var(--max-w);
-            margin: 0 auto;
             padding: 0 var(--pad-x) 48px;
+            padding-left: max(var(--pad-x), calc((100vw - var(--max-w)) / 2));
         }
 
         .intro p {
