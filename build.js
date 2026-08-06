@@ -69,8 +69,10 @@ async function main() {
         lines.sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' }));
 
         return lines.map(line => {
-                const content = marked.parse(line.replace(/^[-*]\s*/, '')).replace(/<\/?p>/g, '')
-                return `<li>${content}</li>`
+                const content = marked.parse(line.replace(/^[-*]\s*/, '')).replace(/<\/?p>/g, '').trim()
+                const parts = content.split(/\s*\|\s*/)
+                const org = parts[1] ? `<span class="c-org">${parts[1]}</span>` : ''
+                return `<li><span class="c-name">${parts[0]}</span>${org}</li>`
             }).join('\n')
     }
 

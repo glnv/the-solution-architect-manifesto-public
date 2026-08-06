@@ -17,6 +17,12 @@
     <meta name="twitter:title" content="The Solution Architect Manifesto">
     <meta name="twitter:description"
         content="A statement of beliefs deemed indispensable to be a successful solution architect in analytics, data & martech.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <!-- Analytics -->
     <script defer src="/_vercel/insights/script.js"></script>
     <style>
@@ -29,19 +35,20 @@
         }
 
         :root {
-            --bg: #ffffff;
-            --surface: #f7f6f4;
-            --border: #e8e6e2;
+            --bg: #FBF9F4;
+            --surface: #F4F1EA;
+            --border: #E7E1D4;
             --blue: #1A6BFF;
-            --blue-dim: #e0eaff;
-            --text-1: #111110;
-            --text-2: #777770;
-            --text-3: #b8b6b0;
-            --sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-            --mono: 'Courier New', Courier, monospace;
-            --serif: Georgia, serif;
-            --max-w: 920px;
-            --pad-x: 48px;
+            --blue-dim: #dbe7ff;
+            --ink: #23201a;
+            --body: #302c24;
+            --muted: #8c8578;
+            --faint: #b3ad9f;
+            --serif: 'Source Serif 4', Georgia, serif;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+            --mono: ui-monospace, 'SF Mono', Menlo, monospace;
+            --max-w: 640px;
+            --pad-x: 28px;
         }
 
         html {
@@ -50,10 +57,11 @@
 
         body {
             background: var(--bg);
-            color: var(--text-1);
-            font-family: var(--sans);
-            font-size: 16px;
-            line-height: 1.6;
+            color: var(--body);
+            font-family: var(--serif);
+            font-size: 19px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
             min-height: 100vh;
         }
 
@@ -67,25 +75,28 @@
             border-bottom-color: var(--blue);
         }
 
+        /* ---- Nav ---- */
         .nav {
-            position: fixed;
-            inset: 0 0 auto;
+            position: sticky;
+            top: 0;
             z-index: 100;
-            background: var(--bg);
+            background: rgba(251, 249, 244, 0.85);
+            backdrop-filter: saturate(140%) blur(8px);
             border-bottom: 1px solid var(--border);
-            height: 56px;
-            padding: 0 var(--pad-x);
+            height: 54px;
+            padding: 0 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .nav__brand {
+            font-family: var(--sans);
             font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.18em;
+            font-weight: 600;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: var(--text-3);
+            color: var(--muted);
             border: none;
         }
 
@@ -95,15 +106,15 @@
         }
 
         .nav__num {
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: var(--sans);
             font-size: 11px;
             font-weight: 500;
-            letter-spacing: 0.05em;
-            color: var(--text-3);
+            color: var(--faint);
             border: 1px solid transparent;
             border-radius: 4px;
             text-decoration: none;
@@ -111,7 +122,7 @@
         }
 
         .nav__num:hover {
-            color: var(--text-1);
+            color: var(--ink);
             border-color: var(--border);
         }
 
@@ -121,105 +132,129 @@
         }
 
         .nav__cta {
+            font-family: var(--sans);
             font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
+            font-weight: 600;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--blue);
             border: 1px solid var(--blue-dim);
             border-radius: 4px;
             padding: 6px 14px;
             margin-left: 8px;
-            transition: background 0.15s;
             text-decoration: none;
+            transition: background 0.15s;
         }
 
         .nav__cta:hover {
             background: var(--blue-dim);
-            border-color: var(--blue-dim);
         }
 
+        /* ---- Hero ---- */
         .hero {
-            padding-top: 152px;
-            padding-bottom: 32px;
+            text-align: center;
+            padding-top: 116px;
+            padding-bottom: 44px;
             padding-left: max(var(--pad-x), calc((100vw - var(--max-w)) / 2));
             padding-right: max(var(--pad-x), calc((100vw - var(--max-w)) / 2));
         }
 
         .hero__eyebrow {
-            font-size: 10px;
+            font-family: var(--sans);
+            font-size: 11px;
             font-weight: 600;
-            letter-spacing: 0.22em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--blue);
-            margin-bottom: 28px;
+            margin-bottom: 26px;
         }
 
         .hero__title {
-            font-size: clamp(48px, 7vw, 88px);
+            font-family: var(--serif);
+            font-size: clamp(44px, 7vw, 68px);
             font-weight: 600;
-            line-height: 1;
-            letter-spacing: -0.03em;
-            color: var(--text-1);
-            margin-bottom: 44px;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--ink);
+            margin-bottom: 30px;
         }
 
         .hero__title span {
-            color: var(--blue);
-            font-weight: 300;
+            color: var(--ink);
+            font-weight: 600;
         }
 
         .hero__meta {
             display: flex;
-            gap: 32px;
-            margin-bottom: 32px;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
         }
 
         .hero__meta-label {
+            font-family: var(--sans);
             font-size: 10px;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--text-3);
+            color: var(--faint);
             margin-bottom: 4px;
         }
 
         .hero__meta-value {
+            font-family: var(--sans);
             font-size: 13px;
-            color: var(--text-2);
+            color: var(--muted);
+        }
+
+        .hero__meta-value a {
+            color: var(--ink);
+            border: none;
+        }
+
+        .hero__meta-value a:hover {
+            color: var(--blue);
         }
 
         .hero__lede {
-            font-size: 17px;
-            color: var(--text-2);
-            line-height: 1.75;
-            max-width: 580px;
-            border-left: 2px solid var(--blue);
-            padding-left: 24px;
-            margin-bottom: 48px;
+            font-family: var(--serif);
+            font-size: 21px;
+            font-style: italic;
+            color: var(--ink);
+            line-height: 1.55;
+            max-width: 520px;
+            margin: 0 auto;
         }
 
+        .hero__rule {
+            width: 40px;
+            height: 1px;
+            background: var(--border);
+            margin: 40px auto 0;
+        }
+
+        /* ---- Intro ---- */
         .intro {
-            padding-top: 0;
-            padding-bottom: 48px;
+            padding-top: 44px;
+            padding-bottom: 44px;
             padding-left: max(var(--pad-x), calc((100vw - var(--max-w)) / 2));
             padding-right: max(var(--pad-x), calc((100vw - var(--max-w)) / 2));
         }
 
         .intro p {
-            font-size: 15px;
-            color: var(--text-2);
-            line-height: 1.8;
-            margin-bottom: 14px;
-            text-align: justify;
-            hyphens: auto;
+            font-size: 19px;
+            color: var(--body);
+            line-height: 1.7;
+            margin-bottom: 18px;
         }
 
         .intro strong {
-            color: var(--text-1);
-            font-weight: 500;
+            color: var(--ink);
+            font-weight: 600;
+            font-style: normal;
         }
 
+        /* ---- Loading ---- */
         .loading {
             padding: 80px var(--pad-x);
             text-align: center;
@@ -256,128 +291,124 @@
             }
         }
 
+        /* ---- Principles ---- */
         .principle {
-            padding: 56px var(--pad-x);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .principle:nth-child(even) {
-            background: var(--surface);
+            padding: 44px var(--pad-x);
+            border-top: 1px solid var(--border);
         }
 
         .principle__inner {
             max-width: var(--max-w);
             margin: 0 auto;
+            text-align: left;
         }
 
-        .principle__tag {
-            display: block;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--blue);
-            margin-bottom: 8px;
+        /* build emits a "Principle" tag and a little rule — not used in this design */
+        .principle__tag,
+        .principle__rule {
+            display: none;
         }
 
         .principle__num {
-            font-size: 10px;
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 500;
             letter-spacing: 0.15em;
-            color: var(--text-3);
-            margin-bottom: 6px;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 14px;
         }
 
         .principle__title {
             font-family: var(--serif);
-            font-size: clamp(28px, 4vw, 48px);
-            font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            color: var(--text-1);
-            margin-bottom: 20px;
-        }
-
-        .principle__rule {
-            width: 28px;
-            height: 2px;
-            background: var(--blue);
-            margin-bottom: 24px;
+            font-size: clamp(26px, 3.6vw, 34px);
+            font-weight: 600;
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            color: var(--ink);
+            margin-bottom: 18px;
         }
 
         .principle__body p {
-            font-size: 16px;
-            color: var(--text-2);
-            line-height: 1.8;
-            max-width: 580px;
-            margin-bottom: 16px;
-            text-align: justify;
-            hyphens: auto;
+            font-size: 19px;
+            color: var(--body);
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        /* markdown *word* stays italic; ***key sentence*** (em>strong) reads as calm bold ink */
+        .principle__body em {
+            font-style: italic;
         }
 
         .principle__body strong {
-            color: var(--text-1);
-            font-weight: 500;
+            font-weight: 600;
+            font-style: normal;
+            color: var(--ink);
         }
 
         .principle__body ul,
         .principle__body ol {
-            padding-left: 20px;
-            margin-bottom: 16px;
-            max-width: 580px;
+            padding-left: 24px;
+            margin-bottom: 18px;
         }
 
         .principle__body li {
-            font-size: 16px;
-            color: var(--text-2);
-            line-height: 1.8;
-            margin-bottom: 6px;
-        }
-
-        .principle__body blockquote,
-        .principle__body pre {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--blue);
-            border-radius: 0 4px 4px 0;
-            padding: 16px 20px;
-            margin: 16px 0 20px;
-            max-width: 560px;
-        }
-
-        .principle:nth-child(even) .principle__body blockquote,
-        .principle:nth-child(even) .principle__body pre {
-            background: var(--bg);
-        }
-
-        .principle__body blockquote p,
-        .principle__body pre code {
-            font-family: var(--mono);
-            font-size: 13px;
-            color: var(--text-1);
+            font-size: 19px;
+            color: var(--body);
             line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        /* marked wraps quote text in <p>; style that, not a bare blockquote */
+        .principle__body blockquote {
+            margin: 28px 0;
+        }
+
+        .principle__body blockquote p {
+            font-family: var(--serif);
+            font-size: 22px;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--ink);
+            line-height: 1.5;
+            padding-left: 26px;
             margin: 0;
             max-width: 100%;
-            text-align: left;
-            hyphens: none;
         }
 
         .principle__body code {
             font-family: var(--mono);
-            font-size: 13px;
+            font-size: 0.82em;
             background: var(--surface);
-            color: var(--blue);
+            color: var(--ink);
             padding: 2px 6px;
-            border-radius: 3px;
-            border: none;
+            border-radius: 4px;
+        }
+
+        .principle__body pre {
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 16px 18px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .principle__body pre code {
+            background: none;
+            padding: 0;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
         .principle__body hr {
             display: none;
         }
 
+        /* ---- Contributors ---- */
         .contributors {
             background: var(--surface);
-            padding: 80px var(--pad-x);
+            padding: 72px var(--pad-x);
         }
 
         .contributors__inner {
@@ -386,80 +417,103 @@
         }
 
         .contributors__label {
-            font-size: 10px;
+            font-family: var(--sans);
+            font-size: 11px;
             font-weight: 600;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--blue);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .contributors__sub {
-            font-size: 13px;
-            color: var(--text-3);
-            margin-bottom: 40px;
+            font-family: var(--serif);
+            font-size: 22px;
+            font-style: italic;
+            color: var(--ink);
+            margin-bottom: 34px;
         }
 
         .contributors__grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px 24px;
             list-style: none;
         }
 
-        .contributors__grid li {
-            background: var(--bg);
-            border: 0.5px solid var(--border);
-            border-radius: 4px;
-            padding: 14px 18px;
-            font-size: 14px;
-            line-height: 1.5;
+        .contributors__grid .c-name {
+            font-family: var(--sans);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--ink);
         }
 
+        .contributors__grid .c-name a {
+            color: var(--ink);
+            border: none;
+        }
+
+        .contributors__grid .c-name a:hover {
+            color: var(--blue);
+        }
+
+        .contributors__grid .c-org {
+            display: block;
+            font-family: var(--sans);
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        /* ---- Contribute ---- */
         .contribute {
-            background: #111110;
-            padding: 64px var(--pad-x);
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 76px var(--pad-x);
             text-align: center;
         }
 
         .contribute h2 {
-            font-size: 22px;
+            font-family: var(--serif);
+            font-size: 30px;
             font-weight: 600;
-            color: #f0ede8;
+            color: var(--ink);
             letter-spacing: -0.01em;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .contribute p {
-            font-size: 15px;
-            color: #777770;
-            line-height: 1.7;
-            max-width: 480px;
-            margin: 0 auto 24px;
+            font-size: 17px;
+            color: var(--muted);
+            line-height: 1.6;
+            max-width: 460px;
+            margin: 0 auto 26px;
         }
 
         .contribute a {
             display: inline-block;
+            font-family: var(--sans);
             font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.12em;
+            font-weight: 600;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--blue);
-            border: 1px solid rgba(26, 107, 255, 0.27);
-            border-radius: 3px;
-            padding: 10px 24px;
-            transition: background 0.15s;
+            border: 1px solid var(--blue-dim);
+            border-radius: 4px;
+            padding: 11px 26px;
             text-decoration: none;
+            transition: background 0.15s;
         }
 
         .contribute a:hover {
-            background: rgba(26, 107, 255, 0.13);
+            background: var(--blue-dim);
         }
 
+        /* ---- Footer ---- */
         .footer {
             max-width: var(--max-w);
             margin: 0 auto;
-            padding: 32px var(--pad-x);
+            padding: 30px var(--pad-x) 64px;
             border-top: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -472,11 +526,12 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            font-family: var(--sans);
             font-size: 11px;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--text-3);
+            color: var(--muted);
         }
 
         .footer__dot {
@@ -487,21 +542,17 @@
             flex-shrink: 0;
         }
 
-        .footer__also {
-            font-size: 11px;
-            color: var(--text-3);
-            letter-spacing: 0.05em;
+        .footer__also,
+        .footer__author {
+            font-family: var(--sans);
+            font-size: 12px;
+            color: var(--faint);
+            letter-spacing: 0.02em;
         }
 
         .footer__also a {
-            color: #FF1F1F;
-            border-bottom-color: #ffe5e5;
-        }
-
-        .footer__author {
-            font-size: 11px;
-            color: var(--text-3);
-            letter-spacing: 0.05em;
+            color: #c0392b;
+            border: none;
         }
 
         .footer__author a {
@@ -515,7 +566,6 @@
             }
 
             .nav {
-                padding: 0 var(--pad-x);
                 height: auto;
                 flex-direction: column;
                 align-items: flex-start;
@@ -524,28 +574,20 @@
                 padding-bottom: 10px;
             }
 
-            .nav__brand {
-                font-size: 12px;
-            }
-
             .nav__right {
                 width: 100%;
             }
 
             .nav__nums {
                 width: 100%;
-                display: flex;
                 justify-content: space-between;
             }
 
             .nav__num {
                 width: auto;
-                height: 24px;
-                padding: 0 2px;
-                font-size: 9px;
                 flex: 1;
-                text-align: center;
-                border-radius: 3px;
+                height: 26px;
+                font-size: 10px;
             }
 
             .nav__cta {
@@ -553,17 +595,25 @@
             }
 
             .hero {
-                padding-top: 140px;
+                padding-top: 130px;
+            }
+
+            .hero__title {
+                font-size: 44px;
             }
 
             .hero__meta {
                 flex-direction: column;
-                gap: 12px;
+                gap: 14px;
             }
 
             .principle__body p,
             .principle__body li {
-                font-size: 15px;
+                font-size: 17px;
+            }
+
+            .principle__body blockquote p {
+                font-size: 20px;
             }
         }
     </style>
@@ -573,7 +623,7 @@
 
     <nav class="nav">
         <a href="#" class="nav__brand">Solution Architect Manifesto</a>
-        <div style="display:flex; align-items:center; gap:8px;">
+        <div class="nav__right" style="display:flex; align-items:center; gap:8px;">
             <div class="nav__nums" id="js-nav-nums"><a class="nav__num" href="#p1">01</a>
 <a class="nav__num" href="#p2">02</a>
 <a class="nav__num" href="#p3">03</a>
@@ -594,7 +644,7 @@
 
     <section class="hero">
         <p class="hero__eyebrow">a manifesto for the</p>
-        <h1 class="hero__title">Solution<br><span>Architect</span></h1>
+        <h1 class="hero__title">The Solution<br><span>Architect</span></h1>
         <div class="hero__meta">
             <div>
                 <p class="hero__meta-label">Author</p>
@@ -613,6 +663,7 @@
         </div>
         <p class="hero__lede">A statement of beliefs deemed indispensable to be a successful solution architect. Based
             on 10+ years of experience. Open to contributions from the community.</p>
+        <div class="hero__rule"></div>
     </section>
 
     <div id="js-intro" class="intro"><p>A solution architect creates the overall technical vision for a specific solution to a business problem.</p>
@@ -816,22 +867,14 @@
         <div class="contributors__inner">
             <p class="contributors__label">Contributors</p>
             <p class="contributors__sub">Everyone who shaped this manifesto.</p>
-            <ul class="contributors__grid" id="js-contributors"><li><a href="https://www.linkedin.com/in/ianagcruz/">Cruz, Ian</a> | ex-Mixpanel
-</li>
-<li><a href="https://www.linkedin.com/in/kal-kola/">Kola, Kal</a> | Segment
-</li>
-<li><a href="https://www.linkedin.com/in/merveen-pandoo/">Pandoo, Merveen</a> | Mixpanel
-</li>
-<li><a href="https://www.linkedin.com/in/mgradu/">Radu, Mihai</a> | Amplitude
-</li>
-<li><a href="https://www.linkedin.com/in/ward-rushton/">Rushton, Ward</a> | evolv Consulting
-</li>
-<li><a href="https://www.linkedin.com/in/david-solito-774b2a14/">Solito, David</a> | Adwire
-</li>
-<li><a href="https://www.linkedin.com/in/maxime-vandenbussche-bb852365/">Vandenbussche, Maxime</a> | Human37
-</li>
-<li><a href="https://www.linkedin.com/in/glennvanderlinden/">Vanderlinden, Glenn</a> | Human37
-</li></ul>
+            <ul class="contributors__grid" id="js-contributors"><li><span class="c-name"><a href="https://www.linkedin.com/in/ianagcruz/">Cruz, Ian</a></span><span class="c-org">ex-Mixpanel</span></li>
+<li><span class="c-name"><a href="https://www.linkedin.com/in/kal-kola/">Kola, Kal</a></span><span class="c-org">Segment</span></li>
+<li><span class="c-name"><a href="https://www.linkedin.com/in/merveen-pandoo/">Pandoo, Merveen</a></span><span class="c-org">Mixpanel</span></li>
+<li><span class="c-name"><a href="https://www.linkedin.com/in/mgradu/">Radu, Mihai</a></span><span class="c-org">Amplitude</span></li>
+<li><span class="c-name"><a href="https://www.linkedin.com/in/ward-rushton/">Rushton, Ward</a></span><span class="c-org">evolv Consulting</span></li>
+<li><span class="c-name"><a href="https://www.linkedin.com/in/david-solito-774b2a14/">Solito, David</a></span><span class="c-org">Adwire</span></li>
+<li><span class="c-name"><a href="https://www.linkedin.com/in/maxime-vandenbussche-bb852365/">Vandenbussche, Maxime</a></span><span class="c-org">Human37</span></li>
+<li><span class="c-name"><a href="https://www.linkedin.com/in/glennvanderlinden/">Vanderlinden, Glenn</a></span><span class="c-org">Human37</span></li></ul>
         </div>
     </section>
 
@@ -923,7 +966,9 @@
                     .sort((a, b) => a.localeCompare(b))
                     .forEach(line => {
                         const li = document.createElement('li')
-                        li.innerHTML = marked.parse(line.replace(/^-\s*/, '')).replace(/<\/?p>/g, '')
+                        const html = marked.parse(line.replace(/^-\s*/, '')).replace(/<\/?p>/g, '').trim()
+                        const parts = html.split(/\s*\|\s*/)
+                        li.innerHTML = `<span class="c-name">${parts[0]}</span>` + (parts[1] ? `<span class="c-org">${parts[1]}</span>` : '')
                         el.appendChild(li)
                     })
             }
@@ -938,7 +983,7 @@
                 })
                 .catch(err => {
                     document.getElementById('js-principles').innerHTML =
-                        `<div class="loading"><p style="color:var(--text-3);font-size:13px;">Could not load content. <a href="https://github.com/glnv/the-solution-architect-manifesto-public">View on GitHub</a></p></div>`
+                        `<div class="loading"><p style="color:var(--faint);font-size:13px;">Could not load content. <a href="https://github.com/glnv/the-solution-architect-manifesto-public">View on GitHub</a></p></div>`
                     console.error('SAM fetch error:', err)
                 })
 
