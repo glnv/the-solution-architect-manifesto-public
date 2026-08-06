@@ -84,6 +84,14 @@ async function main() {
     output = output.replace(/<!-- BUILD:principles -->[\s\S]*?<\/div>/, buildPrinciples(principles) + '\n</div>')
     output = output.replace('<!-- BUILD:contributors -->', buildContributors(contributors))
 
+    // Inline fonts as base64 so they're guaranteed at first paint (no flicker, works offline/file://)
+    function fontSrc(path) {
+        const b64 = fs.readFileSync(path).toString('base64')
+        return `url(data:font/woff2;base64,${b64}) format('woff2')`
+    }
+    output = output.replace('__FONT_SERIF_SRC__', fontSrc('fonts/source-serif-4-latin-var.woff2'))
+    output = output.replace('__FONT_INTER_SRC__', fontSrc('fonts/inter-latin-var.woff2'))
+
     fs.writeFileSync('index.html', output)
     console.log('Build complete.')
 }

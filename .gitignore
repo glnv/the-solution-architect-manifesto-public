@@ -137,3 +137,6 @@ dist
 .DS_Store
 .claude/worktrees/heuristic-mestorf/
 .claude/worktrees/condescending-jemison/
+
+# Claude Code local state (agent worktrees, launch config)
+.claude/

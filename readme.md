@@ -16,22 +16,13 @@ The manifesto belongs to the web. The repo is its changelog.
 
 ---
 
-## How it works
-
-The website fetches content directly from this repo at runtime. No build step, no CMS. When a pull request is reviewed and merged into `main`, the site reflects it on next page load.
-
-This means:
-- The repo is the source of truth
-- All contributions go through a pull request
-- The repo owner reviews and approves every change before it goes live
-
----
+# For contributors
 
 ## How to contribute
 
-All content lives in a single file: `sam-manifesto.md`
+All content lives in a single file: **`sam-manifesto.md`**. That is the only file you need to touch — never the HTML, CSS, or build script.
 
-The file has two sections — `## Principles` and `## Contributors`. You only need to edit those two sections.
+The file has two editable sections — `## Principles` and `## Contributors`.
 
 **Steps:**
 
@@ -42,6 +33,8 @@ The file has two sections — `## Principles` and `## Contributors`. You only ne
 5. Submit a pull request
 
 Contributions without a contributors entry will not be accepted.
+
+Once your pull request is reviewed and merged into `main`, the site rebuilds and redeploys **automatically** — usually live within seconds. You don't run any build step yourself (see [How it works](#for-maintainers--how-it-works)).
 
 ---
 
@@ -58,6 +51,8 @@ Example:
 ```
 - [Vanderlinden, Glenn](https://www.linkedin.com/in/glennvanderlinden/) | Human37
 ```
+
+The name links on the site; the part after `|` renders as the organisation label.
 
 ---
 
@@ -85,9 +80,11 @@ This is the first paragraph.
 This is the second paragraph.
 ```
 
+Body paragraphs are justified with automatic hyphenation on wide screens and left-aligned on mobile — you don't need to do anything for this.
+
 ### Emphasis
 
-Use `***bold italic***` to highlight the single most important sentence in a paragraph. Limit to one per paragraph.
+Use `***bold italic***` to highlight the single most important sentence in a paragraph. Limit to one per paragraph. It renders as calm bold on the site.
 
 ```
 Regular text here. ***This is the key takeaway.*** More regular text.
@@ -97,7 +94,7 @@ Use `**bold**` for strong emphasis on a word or short phrase.
 
 Use `*italic*` for light emphasis or titles of referenced works.
 
-### Quotes and code blocks
+### Quotes
 
 Use blockquotes (`>`) for external quotes or key citations:
 
@@ -105,7 +102,7 @@ Use blockquotes (`>`) for external quotes or key citations:
 > "If you write the problem down clearly, then the matter is half solved."
 ```
 
-These render as styled quote blocks on the site.
+These render as styled italic quote blocks. Where possible, name the source in the sentence that introduces the quote.
 
 ### Lists
 
@@ -125,57 +122,111 @@ Standard markdown links work and render in blue on the site:
 [Link text](https://example.com)
 ```
 
-### Horizontal rules
-
-Do not use `---` horizontal rules inside principles. They are used as section separators at the document level and will be hidden by the site if used inside a principle.
-
 ### Things to avoid
 
 - Do not add new `##` sections — the site only recognises `## Principles` and `## Contributors`
 - Do not use HTML inside the markdown file
 - Do not use tables — they are not supported by the current renderer
+- Do not use `---` horizontal rules inside principles (they're document-level separators and are hidden inside principles)
 - Keep one blank line between paragraphs
+
+---
+
+# For maintainers — how it works
+
+An overview of the mechanics, for maintainers and the curious. **Contributors can skip this** — you never need to build anything by hand.
+
+## Architecture at a glance
+
+Content and design are kept separate, then **baked into a single static HTML file at build time**:
+
+```
+sam-manifesto.md      →  content (what it says)
+index.template.html   →  design (how it looks) + build markers
+        │
+     build.js           renders markdown → HTML, inlines the fonts
+        ▼
+   index.html           generated, self-contained, deployed artifact
+```
+
+## The build — `build.js`
+
+A small Node script (using the [`marked`](https://github.com/markedjs/marked) markdown library). It:
+
+1. Reads `sam-manifesto.md` and splits it into intro / `## Principles` / `## Contributors`.
+2. Renders each section to HTML with `marked`.
+3. Injects them into `index.template.html` at the `<!-- BUILD:nav -->`, `<!-- BUILD:intro -->`, `<!-- BUILD:principles -->`, and `<!-- BUILD:contributors -->` markers.
+4. Inlines the two web fonts from `fonts/` into the CSS as base64, replacing the `__FONT_SERIF_SRC__` / `__FONT_INTER_SRC__` placeholders.
+5. Writes the finished page to `index.html`.
+
+The result is fully self-contained — content baked in, fonts embedded, **no external requests at runtime**.
+
+## Why a build step at all?
+
+An earlier version of the site rendered content in the browser: it shipped a near-empty HTML shell and fetched `sam-manifesto.md` from GitHub with JavaScript on every page load. That works for people, but it's weak for machines — which is the reason for baking the content into `index.html` ahead of time:
+
+- **Search-engine indexing** — crawlers may not run (or may defer) client-side JavaScript, so the actual manifesto text often wasn't in the HTML they indexed. Pre-rendering puts the full content in the initial response, so search engines index the real thing, not a loading state.
+- **Social & LLM crawlers** — link-preview scrapers and AI/LLM crawlers (see `llms.txt`) typically read only the raw HTML. Baked content means they see the manifesto itself.
+- **Speed & first paint** — the content (and fonts) are present immediately: no round-trip to GitHub, no spinner, no layout shift.
+- **Resilience** — the live site no longer depends on GitHub's raw endpoint or its CORS behaviour being available at request time.
+
+The trade-off is one build step — which the GitHub Action runs automatically — in exchange for a complete, crawlable, self-contained page. Contributors still just edit one markdown file.
+
+## Automated builds — GitHub Actions
+
+`.github/workflows/build.yml` runs the build automatically. It triggers on:
+
+- a **manual run** (Actions → Build → Run workflow), or
+- a **push to `main`** that changes `sam-manifesto.md`, `index.template.html`, or `build.js`.
+
+The job installs `marked`, runs `node build.js`, and commits the regenerated `index.html` back to `main` with a `[skip ci]` message (so it doesn't trigger itself in a loop). This is why a merged contributor PR goes live with no manual step.
+
+> A push that only changes `index.html`, `fonts/`, `README.md`, or other files does **not** trigger a rebuild — only the three paths above do.
+
+## Deployment — Vercel
+
+Vercel deploys `main` on every push and serves the static `index.html`. Because it's one small self-contained file, production updates land in ~1–3 seconds.
+
+A locally-built change deploys once. If you instead edit `sam-manifesto.md` directly on GitHub (without building), you'll see two quick deploys: the first serves the not-yet-rebuilt page, then the Action's follow-up commit deploys the correct one a few seconds later.
+
+## Fonts
+
+The site uses **Source Serif 4** (headings, body, quotes) and **Inter** (nav, labels). Both are self-hosted in `fonts/` and inlined as base64 by the build. This removes the third-party Google Fonts dependency and prevents the first-load font "flicker" (fallback-then-swap).
+
+## Runtime fallback
+
+`index.html` also contains a small script that, *if* it ever loads without pre-baked principles, fetches `sam-manifesto.md` from GitHub and renders it in the browser. In normal operation the content is already baked in, so this is only a safety net.
 
 ---
 
 ## Running locally
 
-The site is a single HTML file. You can't open it directly in a browser (`file://`) because the GitHub fetch will be blocked by CORS. You need a local server.
-
-**Option 1 — Node (recommended)**
+You need [Node](https://nodejs.org) installed.
 
 ```bash
-npx serve .
+npm install marked   # once
+node build.js        # regenerate index.html from the markdown
 ```
 
-Then open `http://localhost:3000`.
+Then open `index.html` directly in your browser — it works from `file://` because everything (content and fonts) is baked in.
 
-**Option 2 — VS Code**
-
-Install the [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension, open the repo folder, and click **Go Live** in the bottom status bar.
-
-**Option 3 — Python**
-
-```bash
-python -m http.server 8000
-```
-
-Then open `http://localhost:8000`.
-
-When running locally, the site fetches `sam-manifesto.md` directly from the `main` branch on GitHub. Local changes to `sam-manifesto.md` won't appear until pushed. To preview locally before pushing, temporarily edit `RAW_URL` in `index.html` to point to your fork's raw URL.
+To preview a change, edit `sam-manifesto.md` (or the design in `index.template.html`), re-run `node build.js`, and refresh. If you prefer a server: `npx serve .` or `python3 -m http.server 8000`.
 
 ---
 
 ## Repo structure
 
 ```
-solutionarchitectmanifesto-v2/
-├── sam-manifesto.md        ← edit this to contribute
-├── index.template.html     ← HTML shell, do not edit
-├── index.html              ← built output, do not edit (overwritten by Action)
-├── build.js                ← build script, do not edit
-├── llms.txt                ← LLM/crawler index
-└── README.md               ← you are here
+.
+├── sam-manifesto.md            ← content — edit this to contribute
+├── index.template.html         ← design shell + build markers — maintainers only
+├── build.js                    ← build script (markdown → index.html) — maintainers only
+├── index.html                  ← generated output — do NOT edit (rebuilt by the Action)
+├── fonts/                      ← self-hosted woff2 fonts, inlined at build time
+├── .github/workflows/build.yml ← CI: rebuilds index.html on push
+├── favicon.svg
+├── llms.txt                    ← LLM / crawler index
+└── README.md                   ← you are here
 ```
 
 ---
