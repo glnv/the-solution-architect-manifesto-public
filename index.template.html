@@ -259,6 +259,9 @@
             color: var(--body);
             line-height: 1.7;
             margin-bottom: 18px;
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
         }
 
         .intro strong {
@@ -347,6 +350,9 @@
             color: var(--body);
             line-height: 1.7;
             margin-bottom: 18px;
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
         }
 
         /* markdown *word* stays italic; ***key sentence*** (em>strong) reads as calm bold ink */
@@ -620,9 +626,18 @@
                 gap: 14px;
             }
 
+            .intro p,
             .principle__body p,
             .principle__body li {
                 font-size: 17px;
+            }
+
+            /* narrow columns justify poorly — fall back to ragged-left on phones */
+            .intro p,
+            .principle__body p {
+                text-align: left;
+                hyphens: none;
+                -webkit-hyphens: none;
             }
 
             .principle__body blockquote p {
